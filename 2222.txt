@@ -1,0 +1,34 @@
+1. The RSVP Agent is started.
+  
+ 2. The configuration file being used is reported.
+  
+  3.The name of the TCP/IP stack that the RSVP Agent associates itself with is reported.
+  
+  4. The name and IP address of the interfaces configured to the associated stack are reported. Note that the RSVP Agent           gets notified by the stack of any interface additions, deletions, or changes after this point.
+  
+5. The interfaces are initialized one by one.
+  
+6. Some interface types are not enabled for multicasting. Therefore, when the RSVP Agent tries to enable multicasting, a warning is reported. Such interfaces can still be used for unicasting.
+  
+ 7.RSVP Agent initialization is complete.
+
+
+
+#!/bin/bash
+
+log_file="your_log_file.txt"
+
+
+output_file="log_messages_count.txt"
+
+
+
+log_messages_count=$(grep -oP '\(\d{2}/\d{2} \d{2}:\d{2}:\d{2} \w+' "$log_file" | sort | uniq -c)
+
+
+echo "$log_messages_count"
+
+
+echo "$log_messages_count" > "$output_file"
+
+echo "Log messages count saved to $output_file"
